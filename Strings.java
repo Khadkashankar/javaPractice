@@ -23,6 +23,6 @@ public class Strings {
             System.out.println("String are not equal");
 
         }
-        //string are immutable. string are not modified, add, changed
+        //string are immutable. string are not modified, add, changed 
     }
 }
