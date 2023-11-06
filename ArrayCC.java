@@ -38,9 +38,38 @@ public class ArrayCC {
         return -1;
     }
 
+    public static void reverseArray(int numbers[]) {
+        int start = 0;
+        int end = numbers.length - 1;
+        while (start < end) {
+            //classical swap
+            int temp = numbers[end];
+           numbers[end] = numbers[start];
+            numbers[start] = temp;
+
+            start++;
+            end--;
+
+        }
+    }
+
+    public static void printPairs(int numbers[]) {
+
+    int total_pairs =0;//count the total pairs 
+    for (int i = 0; i < numbers.length; i++) {
+        int curr = numbers[i];
+        for (int j = i + 1; j < numbers.length; j++) {
+            System.out.print("(" + curr + "," + numbers[j] + ")");
+            total_pairs++;
+        }
+        System.out.println();
+    }
+    System.out.println(total_pairs);
+    }
+
     public static void main(String[] args) {
         int numbers[] = { 10, 12, 13, 8, 100, 48 };
-            int key = 10;
+            // int key = 10;
         //     int index = linearSearch(numbers, key);
         //     if(index==-1){
             //         System.out.println("not found");
@@ -50,7 +79,18 @@ public class ArrayCC {
                 //             }
                 // int max = maxFromArray(numbers);
                 // System.out.println("the largest number from array is " + max);
-                int index = binarySearch(numbers, key);
-                    System.out.println("index of "+key+" is "+ index);
+                //binary search
+                // int index = binarySearch(numbers, key);
+                //     System.out.println("index of "+key+" is "+ index);
+
+                //revers an array
+                // reverseArray(numbers);
+                // for (int i = 0; i < numbers.length; i++) {
+                //     System.out.print(numbers[i]+" ");
+
+
+                //total pairs
+                printPairs(numbers);
+                }
     }
-}
+
