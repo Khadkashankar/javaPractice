@@ -67,6 +67,23 @@ public class ArrayCC {
     System.out.println(total_pairs);
     }
 
+    public static void printSubarray(int numbers[]) {
+        int total_pairs = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            int start = i;
+            for (int j = i; j < numbers.length; j++) {
+                int end = j;
+                for (int k = start; k <= end; k++) {
+                    System.out.print(numbers[k] + " ");
+                }
+                total_pairs++;
+                System.out.println();
+            }
+            System.out.println();
+        }  
+        System.out.println(total_pairs);
+    }
+
     public static void main(String[] args) {
         int numbers[] = { 10, 12, 13, 8, 100, 48 };
             // int key = 10;
@@ -90,7 +107,10 @@ public class ArrayCC {
 
 
                 //total pairs
-                printPairs(numbers);
+                // printPairs(numbers);
+
+                //print subarrays
+                printSubarray(numbers);
                 }
     }
 
