@@ -44,7 +44,7 @@ public class ArrayCC {
         while (start < end) {
             //classical swap
             int temp = numbers[end];
-           numbers[end] = numbers[start];
+            numbers[end] = numbers[start];
             numbers[start] = temp;
 
             start++;
@@ -55,16 +55,16 @@ public class ArrayCC {
 
     public static void printPairs(int numbers[]) {
 
-    int total_pairs =0;//count the total pairs 
-    for (int i = 0; i < numbers.length; i++) {
-        int curr = numbers[i];
-        for (int j = i + 1; j < numbers.length; j++) {
-            System.out.print("(" + curr + "," + numbers[j] + ")");
-            total_pairs++;
+        int total_pairs = 0;//count the total pairs 
+        for (int i = 0; i < numbers.length; i++) {
+            int curr = numbers[i];
+            for (int j = i + 1; j < numbers.length; j++) {
+                System.out.print("(" + curr + "," + numbers[j] + ")");
+                total_pairs++;
+            }
+            System.out.println();
         }
-        System.out.println();
-    }
-    System.out.println(total_pairs);
+        System.out.println(total_pairs);
     }
 
     public static void printSubarray(int numbers[]) {
@@ -80,7 +80,7 @@ public class ArrayCC {
                 System.out.println();
             }
             System.out.println();
-        }  
+        }
         System.out.println(total_pairs);
     }
 
@@ -96,46 +96,88 @@ public class ArrayCC {
                     //subarray sum
                     currSum += numbers[k];
                 }
-                        System.out.println(currSum);
-                        if (maxSum < currSum) {
-                            maxSum = currSum;
-               }
+                System.out.println(currSum);
+                if (maxSum < currSum) {
+                    maxSum = currSum;
+                }
             }
-           
-        }  
-        System.out.println("max sum = "+maxSum);
+
+        }
+        System.out.println("max sum = " + maxSum);
     }
 
+    public static void prefixArrayMaxSum(int numbers[]) {
+        int currSum = 0;
+        int maxSum = Integer.MIN_VALUE;
+        int prefix[] = new int[numbers.length];
+
+        prefix[0] = numbers[0];//the first element of original array is equal to the first element of prfix array
+        //calculate prefix array
+        for (int i = 1; i < prefix.length; i++) {
+            prefix[i] = prefix[i - 1] + numbers[i];
+        }
+
+        //now calculating the maxsum of prefix array
+        for (int i = 0; i < numbers.length; i++) {
+            int start = i;
+            for (int j = i; j < numbers.length; j++) {
+                int end = j;
+                currSum = start == 0 ? prefix[end] : prefix[end] - prefix[start - 1];
+                if (maxSum < currSum) {
+                    maxSum = currSum;
+                }
+            }
+        }
+        System.out.println("max sum = " + maxSum);
+    }
+ 
+    public static void kadanes(int numbers[]) {
+        int currSum = 0;
+        int maxSum = Integer.MIN_VALUE;
+        for (int i = 0; i < numbers.length; i++) {
+            currSum = currSum + numbers[i];
+            if (currSum < 0) {
+                currSum = 0;
+            }
+            maxSum = Math.max(currSum, maxSum);
+        }
+        System.out.println("max sum = "+ maxSum);
+    }
     public static void main(String[] args) {
-        int numbers[] = { 10, 12, 13, 8, 100, 48 };
-            // int key = 10;
+        int numbers[] = { 1,-2,6,-1,3 };
+        // int key = 10;
         //     int index = linearSearch(numbers, key);
         //     if(index==-1){
-            //         System.out.println("not found");
-            //             }
-            //             else{
-                //                 System.out.println("key is at index "+index);
-                //             }
-                // int max = maxFromArray(numbers);
-                // System.out.println("the largest number from array is " + max);
-                //binary search
-                // int index = binarySearch(numbers, key);
-                //     System.out.println("index of "+key+" is "+ index);
+        //         System.out.println("not found");
+        //             }
+        //             else{
+        //                 System.out.println("key is at index "+index);
+        //             }
+        // int max = maxFromArray(numbers);
+        // System.out.println("the largest number from array is " + max);
+        //binary search
+        // int index = binarySearch(numbers, key);
+        //     System.out.println("index of "+key+" is "+ index);
 
-                //revers an array
-                // reverseArray(numbers);
-                // for (int i = 0; i < numbers.length; i++) {
-                //     System.out.print(numbers[i]+" ");
+        //revers an array
+        // reverseArray(numbers);
+        // for (int i = 0; i < numbers.length; i++) {
+        //     System.out.print(numbers[i]+" ");
 
+        //total pairs
+        // printPairs(numbers);
 
-                //total pairs
-                // printPairs(numbers);
+        //print subarrays
+        //printSubarray(numbers); 
 
-                //print subarrays
-                //printSubarray(numbers);
+        //max subarray sum
+        //  printSubarrayMaxSum(numbers);
 
-                //max subarray sum
-                printSubarrayMaxSum(numbers);
-                }
+        //max subarray sum 
+        //prefixArrayMaxSum(numbers);
+
+        //kadanes
+        kadanes(numbers);
     }
+}
 
