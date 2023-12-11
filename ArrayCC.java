@@ -141,10 +141,52 @@ public class ArrayCC {
             }
             maxSum = Math.max(currSum, maxSum);
         }
-        System.out.println("max sum = "+ maxSum);
+        System.out.println("max sum = " + maxSum);
+    }
+
+    public static int TrappedRainwater(int numbers[]) {
+        //calculating left max boundary
+        int n = numbers.length;
+        int leftMax[] = new int[n];
+        leftMax[0] = numbers[0];
+        for (int i = 1; i < n; i++) {
+            leftMax[i] = Math.max(leftMax[i - 1], numbers[i]);
+        }
+        //calculating right max boundary
+        int rightMax[] = new int[n];
+        rightMax[n - 1] = numbers[n - 1];
+        for (int i = n - 2; i >= 0; i--) {
+            rightMax[i] = Math.max(rightMax[i + 1], numbers[i]);
+        }
+        int trappedWater = 0;
+        for (int i = 1; i < n; i++) {
+            //waterlevel = min(left max bound, right max bound)
+            int waterLevel = Math.min(leftMax[i], rightMax[i]);
+            //trapped water = waterlevel - height of bar
+            trappedWater += waterLevel - numbers[i];
+        }
+        return trappedWater;
+
+    }
+
+    public static int StockBuySell(int numbers[]) {
+        int buyPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            if (buyPrice < numbers[i]) {
+                int profit = numbers[i] - buyPrice;//today profit
+                maxProfit = Math.max(maxProfit, profit);
+            }
+            else {
+                buyPrice = numbers[i];
+            }
+        }
+       
+        return maxProfit;
     }
     public static void main(String[] args) {
-        int numbers[] = { 1,-2,6,-1,3 };
+        // int numbers[] = {4,2,0,6,3,2,5 };
+        int numbers[] = { 7, 1, 5, 3, 6, 4 };
         // int key = 10;
         //     int index = linearSearch(numbers, key);
         //     if(index==-1){
@@ -177,7 +219,14 @@ public class ArrayCC {
         //prefixArrayMaxSum(numbers);
 
         //kadanes
-        kadanes(numbers);
+        //kadanes(numbers);
+    
+        //trapped rainwater 
+        //    System.out.println("the trapped water is " + TrappedRainwater(numbers));
+    
+        //stock buy and sell
+        System.out.println("profit is "+StockBuySell(numbers));
+    
     }
 }
 
