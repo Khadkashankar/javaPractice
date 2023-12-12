@@ -176,14 +176,15 @@ public class ArrayCC {
             if (buyPrice < numbers[i]) {
                 int profit = numbers[i] - buyPrice;//today profit
                 maxProfit = Math.max(maxProfit, profit);
-            }
-            else {
+            } else {
                 buyPrice = numbers[i];
             }
         }
-       
+
         return maxProfit;
     }
+    
+   
     public static void main(String[] args) {
         // int numbers[] = {4,2,0,6,3,2,5 };
         int numbers[] = { 7, 1, 5, 3, 6, 4 };
