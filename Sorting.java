@@ -43,7 +43,7 @@ public class Sorting {
         }
     }
 
-    public static void CountigSort(int arr[]) {
+    public static void CountingSort(int arr[]) {
         int largest = Integer.MIN_VALUE;
         for (int i = 0; i < arr.length; i++) {
             largest = Math.max(largest, arr[i]);
@@ -68,7 +68,7 @@ public class Sorting {
         // BubbleSort(arr);
         // SelectionSort(arr);
         // InsertionSort(arr);
-        CountigSort(arr);
+        CountingSort(arr);
 
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i]+" ");
