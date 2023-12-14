@@ -20,8 +20,8 @@ public class TwoDArray {
         int matrix[][] = new int[3][3];
         int m=matrix.length;
         int n=matrix[0].length;
-        Scanner sc = new Scanner(System.in);
         
+        Scanner sc = new Scanner(System.in);
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 matrix[i][j] = sc.nextInt();
