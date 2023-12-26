@@ -7,13 +7,14 @@ public class Power {
        int x = sc.nextInt();
        System.out.println("Enter n");
        int n = sc.nextInt();
+    double power = Math.pow(x, n);
 
-       int result = 1;
-       //Please see that n is not too large or else result will exceed the size of int
-       for(int i=0; i<n; i++) {
-           result = result * x;
-       }
+    //    int result = 1;
+    //    //Please see that n is not too large or else result will exceed the size of int
+    //    for(int i=0; i<n; i++) {
+    //        result = result * x;
+    //    }
 
-       System.out.println("x to the power n is : "+ result);
+       System.out.println("x to the power n is : "+ power);
    }   
 }
